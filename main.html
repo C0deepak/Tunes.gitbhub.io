@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Fruktur&family=Julius+Sans+One&family=Lobster+Two&family=Poppins:wght@100;300;400;500;600;900&family=The+Nautigal:wght@700&display=swap');
+    /* font-family: 'Fruktur', cursive;
+    font-family: 'Julius Sans One', sans-serif;
+    font-family: 'Lobster Two', cursive;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'The Nautigal', cursive; */
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        border: none;
+        outline: none;
+        /* color: white; */
+    }
+    html{
+        font-size: 70%;
+        overflow-x: hidden;
+        
+    }
+    body{
+        font-family: Poppins;
+        background: #121212;
+        
+    }
+    header{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: #181818;
+        box-shadow: 0 .5rem 1rem rgba(255, 255, 255, .2);
+        padding: 1rem 7%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 1000;
+        color: white;
+    }
+    header .logo{
+        font-size: 3rem;
+        font-family: 'The Nautigal', cursive;
+        color: #00ffff; /*#ff69b4;*/
+    }
+    header .navbar a{
+        font-family: 'Julius Sans One', sans-serif;
+        font-size: 1.7rem;
+        margin-left: 2rem;
+        color: white;
+    }
+    header .navbar a:hover{
+        color: #00ffff;
+    }
+    header input{
+        display: none;
+    }
+    header .fa{
+        font-size: 2.5rem;
+        color: #00ffff;
+        cursor: pointer;
+        visibility: hidden;
+        opacity: 0;
+    }
+    .branding{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: url(Music.png) no-repeat;
+        min-height: 90vh;
+        background-size: cover ;
+        opacity: .8;
+        /* background-position: center; */   
+    }
+    .search{
+        width: 50vw;
+        border: 2px solid #00ffff;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10rem;
+        
+    }
+    .search input[type="search"]{
+        width: 70%;
+        background: none;
+        color: #00ffff;
+        padding: 10px ;
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+    .search input[type=submit]{
+        width: 30%;
+        background: none;
+        color: #000;
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin: 8px;
+        background: #00ffff;
+        border-radius: 10px;
+    }
+
+    .search input[type="search"]::placeholder{
+        color: white;
+    }
+    .pulse{
+        height: 50px;
+        width: 50px;
+        background: linear-gradient(#8a82fb, #00ffff);
+        position: relative;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 25px;
+    }
+    .pulse:before,
+    .pulse:after{
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: #8a82fb;
+        border-radius: 50%;
+        z-index: -1;
+        opacity: 0.7;
+    }
+    .pulse:before{
+        animation: pulse 2s ease-out infinite;
+    }
+    .pulse:after{
+        animation: pulse 2s 1s ease-out infinite ;
+    }
+    @keyframes pulse {
+        100%{
+            transform: scale(2.5);
+            opacity: 0;
+        }
+    }
+    .trial{
+        /* height: 60vh; */
+        width: 100%;
+        background: linear-gradient( to right, #8a82fb, #00ffff, #372beb);
+        display: flex;
+        padding: 10px;
+        padding-bottom: 0;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .trial .image{
+        height: 100%;
+        flex: 40%
+    }
+    .trial .image img{
+        height: 100%;
+    }
+    .trial .text{
+        flex: 60%;
+        padding-left: 5rem;
+        color: black;
+        font-size: 1.7rem;
+    }
+    .trial .text h1,
+    .trial .text h2{
+        font-family: 'Julius Sans One', sans-serif;
+    }
+    .music_gallery{
+        background: #222;
+    }
+    .music_gallery .title{
+        font-size: 3rem;
+        padding: 2rem 0;
+        text-align: center;
+        text-shadow: 0 .5rem 1rem #000;
+        color: #00ffff;
+    }
+    .music_gallery .music_container{
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+    }
+    .music_gallery .music_container .box{
+        height: 7rem;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        background: #f9f9f9;
+        border-radius: 1rem;
+        box-shadow: 0 .5rem 1rem #000;
+        overflow: hidden;
+        margin: 1rem;
+    }
+    .music_gallery .music_container .box .image{
+        height: 100%;
+        width: 10rem;
+    }
+    .music_gallery .music_container .box .image img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    .music_gallery .music_container .box .music{
+        width: 90%;
+    }
+    .music_gallery .music_container .box .music audio{
+        width: 100%;
+        outline: none;
+    }
+    .pricing{
+        background: #404040;
+    }
+    .pricing .heading{
+        font-size: 3rem;
+        padding: 2rem 0;
+        text-shadow: 0 .5rem 1rem #000;
+        color: #00ffff;
+        text-align: center;
+    }
+    .pricing_box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .pricing_box .pricing_table{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 400px;
+        width: 250px;
+        border: 2px solid #00ffff;
+        border-radius: 10px;
+        background: #222;
+        margin: 20px;
+    }
+    .pricing_box .pricing_table .title{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Julius Sans One', sans-serif;
+        font-weight: 800;
+        width: 100%;
+        height: 100px;
+        margin-bottom: 20px;
+        border-bottom-left-radius: 50% 20%;
+        border-bottom-right-radius: 50% 20%;
+        background: linear-gradient(#8a82fb, #00ffff);
+    }
+    .pricing_box .pricing_table .price{
+        height: 70px;
+        width: 70px;
+        border: 1px solid #00ffff;
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: 25px;
+        justify-content: center;
+        border-radius: 50%;
+        background: linear-gradient(#8a82fb, #00ffff);
+    }
+    .pricing_box .pricing_table .discription{
+        margin-top: 30px;
+        font-size: 1.5rem;
+        font-weight: 550;
+        padding: 10px;
+        color: #000;
+        color: #b3b3b3;
+    }
+    .pricing_box .pricing_table .discription .tick{
+        padding: 10px;
+        color: #00ff80;
+        font-weight: bold;
+    }
+    .pricing_box .pricing_table .discription .cross{
+        padding: 10px;
+        color: #ff4000;
+        font-weight: bold;
+    }
+    .pricing_box .pricing_table .get{
+        height: 40px;
+        width: 100px;
+        border-radius: 20px;
+        display: flex;
+        font-size: 1.5rem;
+        justify-content: center;
+        align-items: center;
+        color: #181818;
+        background: linear-gradient(#8a82fb, #00ffff);
+        cursor: pointer;
+    }
+    .radio{
+        background: linear-gradient( to right, #8a82fb, #00ffff, #372beb);
+    }
+    .radio .heading{
+        font-size: 3rem;
+        padding: 2rem 0;
+        text-shadow: 0 .5rem 1rem #000;
+        color: #181818;
+        text-align: center;
+    }
+    .radio form{
+        margin: 1.2rem;
+        padding: 1.5rem 3rem;
+    }
+    .radio form p{
+        font-size: 20px;
+    }
+    .radio form input{
+        font-size: 20px;
+        padding: 5px 20px;
+        border-radius: 10px;
+        width: 90%;
+        margin: 10px 20px;
+        background: none;
+        border-bottom: 2px solid #181818;
+    }
+    .radio form select{
+        font-size: 20px;
+        padding: 5px 20px;
+        border-radius: 10px;
+        width: 70%;
+        margin: 10px 20px;
+        background: none;
+        border-bottom: 2px solid #181818;
+    }
+    .radio form input[type="submit"]{
+        color: #00ffff;
+        width: 100px;
+        background: linear-gradient( #121212, #404040);
+    }
+    footer{
+        background: #121212;
+        color: #f9f9f9;
+    }
+    footer .footer_table{
+        display: flex;
+        /* justify-content: center;
+        align-items: center; */
+    }
+    footer .footer_table .heading{
+        font-size: 2rem;
+        position: relative;
+        top: 5px;
+        margin-bottom: 15px;
+    }
+    footer .footer_table .heading::before{
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        background: #00ffff;
+        height: 3px;
+        width: 50px;
+    }
+    footer .footer_table .about{
+        flex: 40%;
+        font-size: 1.3rem;
+        padding: 1.5rem;
+    }
+    footer .footer_table .about .social{
+        margin: 1.3rem;
+    }
+    footer .footer_table .about .social .fa{
+        width: 40px;
+        height: 40px;
+        padding: 11px;
+        font-weight: 1.5rem;
+        text-align: center;
+        border: 2px solid #00ffff;
+        border-radius: 50%;
+    }
+    footer .footer_table .about .social .fa:hover{
+        background: #00ffff;
+        color: #181818;
+    }
+    footer .footer_table .quick{
+        flex: 30%;
+        font-size: 1.3rem;
+        padding: 1.5rem;
+    }
+    footer .footer_table .quick p{
+        cursor: pointer;
+    }
+    footer .footer_table .quick p:hover{
+        color: #00ffff;
+    }
+    footer .footer_table .contact{
+        flex: 30%;
+        font-size: 1.3rem;
+        padding: 1.5rem;
+    }
+    footer .footer_table .contact span{
+        padding: 1.1rem;
+        color: #00ffff;
+    }
+    footer .footer_table .contact p:hover{
+        color: #00ffff;
+    }
+    footer .copy{
+        width: 100%;
+        padding: 1.3rem;
+        background: #181818;
+    }
+    footer .copy p{
+        text-align: center;
+        font-size: 1.5rem;
+        color: #00ffff;
+    }
+    /* media queries */
+    @media (max-width:1200px) {
+        
+        html{
+            font-size: 60%;
+        }
+
+    }
+    @media (max-width:980px){
+        .trial{
+           flex-direction: column-reverse;
+           align-items: center;
+           justify-content: center;
+           /* height: 80vh; */
+        }
+        .trial .image{
+            height: 300px;
+            width: 250px;
+        }
+        .trial .image img{
+            height: 100%;
+            width: 80%;
+        }
+        .trial .text{
+            padding-top: 0.5rem;
+        }
+    }
+    @media (max-width:768px) {
+        
+        header .fa{
+            visibility: visible;
+            opacity: 1;
+        }
+        header .navbar{
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #181818;
+            padding: 1rem 2rem;
+            border-top: .1rem solid rgba(255, 255, 255, .2);
+            box-shadow: 0 .5rem 1rem rgba(255, 255, 255, .2);
+            transform-origin: top;
+            transform: scaleY(0);
+            opacity: 0;
+        }
+        header .navbar a{
+            display: block;
+            margin: 2rem 0;
+            font-size: 2rem;
+        }
+        header input:checked ~ .navbar{
+            transform: scaleY(1);
+            opacity: 1;
+        }
+        header input:checked ~ label::before{
+            content: '\f00d';
+        }
+        .pricing_box{
+            flex-direction: column;
+        }
+        footer .footer_table {
+            flex-direction: column;
+        }
+    } 
+    @media (max-width:455px) {
+        html{
+            font-size: 55%;
+        }
+        .search{
+            width: 200px;
+            height: 50px;
+        }
+        .trial .image{
+            height: 250px;
+            width: 200px;
+        }
+        .trial .text{
+            padding-top: 1rem;
+            font-size: 1.7rem;
+        }
+        .music_gallery .music_container .box{
+            height: 27rem;
+            width: 90%;
+            flex-flow: column;
+        }
+        .music_gallery .music_container .box .image{
+            height: 80%;
+            width: 100%;
+        }
+        .music_gallery .music_container .box .music{
+            height: 20%;
+            width: 100%;
+        }
+    }
+</style>
+<body>
+    <!-- header section starts -->
+    <header>
+
+        <a href="#" class="logo">Tunes!</a>
+
+        <input type="checkbox" name="" id="menu-bar">
+        <label for="menu-bar" class="fa fa-bars"></label>
+
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">Trendings</a>
+            <a href="#">Radio</a>
+            <a href="#">Contact</a>
+            <a href="#">Login</a>
+        </nav>
+
+    </header>
+    <!-- header section ends -->
+
+    <!-- branding section starts -->
+    <section class="branding">
+        <div class="search">
+            <input type="search" placeholder="Songs...">
+            <input type="submit" value="Search">
+        </div>
+        <div class="pulse">
+            <i class="fa fa-headphones" style="color: black;"></i>
+        </div>
+        
+    </section>
+    <!-- branding section ends -->
+
+    <!-- trial section starts -->
+        <div class="trial">
+            <div class="image">
+                <img src="girl2.png" alt="">
+            </div>
+            <div class="text">
+                <h1>Free Trial for 30 Days!</h1>
+                <h2>What will you get...</h2>
+                <ul class="get">
+                    <li>Ad Free Music</li>
+                    <li>Unlimited Downloads</li>
+                    <li>Early access to songs</li>
+                    <li>Radio and Podcasts for Free</li>
+                </ul>
+            </div>
+        </div>
+    <!-- trial section ends -->
+    <!-- songs section starts -->
+        <div class="music_gallery">
+            <div class="title"> TRENDINGS </div>
+            <div class="music_container">
+                <div class="box">
+                    <div class="image">
+                        <img src="Music_Gallery/i1.jpeg" alt="">
+                    </div>
+                    <div class="music">
+                        <audio src="Music_Gallery/s1.mpeg" controls></audio>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="image">
+                        <img src="Music_Gallery/i2.jpeg" alt="">
+                    </div>
+                    <div class="music">
+                        <audio src="Music_Gallery/s2.mpeg" controls></audio>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="image">
+                        <img src="Music_Gallery/i3.jpeg" alt="">
+                    </div>
+                    <div class="music">
+                        <audio src="Music_Gallery/s3.mpeg" controls></audio>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="image">
+                        <img src="Music_Gallery/i4.jpeg" alt="">
+                    </div>
+                    <div class="music">
+                        <audio src="Music_Gallery/s4.mpeg" controls></audio>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="image">
+                        <img src="Music_Gallery/i5.jpeg" alt="">
+                    </div>
+                    <div class="music">
+                        <audio src="Music_Gallery/s5.mpeg" controls></audio>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="image">
+                        <img src="Music_Gallery/i6.jpeg" alt="">
+                    </div>
+                    <div class="music">
+                        <audio src="Music_Gallery/s6.mpeg" controls></audio>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="image">
+                        <img src="Music_Gallery/i7.jpeg" alt="">
+                    </div>
+                    <div class="music">
+                        <audio src="Music_Gallery/s7.mpeg" controls></audio>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="image">
+                        <img src="Music_Gallery/i8.png" alt="">
+                    </div>
+                    <div class="music">
+                        <audio src="Music_Gallery/s8.mpeg" controls></audio>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="image">
+                        <img src="Music_Gallery/i9.jpeg" alt="">
+                    </div>
+                    <div class="music">
+                        <audio src="Music_Gallery/s9.mpeg" controls></audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- songs section ends -->
+    <!-- Pricing section starts -->
+    <div class="pricing">
+        <div class="heading">
+            PRICING
+        </div>
+        <div class="pricing_box">
+            <div class="pricing_table">
+                <div class="title">
+                    <h1>Normal</h1>
+                    <h2>For Single Day</h2>
+                </div>
+                <div class="price">
+                    $1
+                </div>
+                <div class="discription">
+                    <p><span class="tick">&#10003</span>No Ads</p>
+                    <p><span class="tick">&#10003</span>Downloads(20)</p>
+                    <p><span class="cross">&#10007</span>Ringtones</p>
+                    <p><span class="cross">&#10007</span>Radio & Podcasts</p>
+                </div>
+                <div class="get">
+                    <p>Get Now</p>
+                </div>
+            </div>
+            <div class="pricing_table">
+                <div class="title">
+                    <h1>Standard</h1>
+                    <h2>For One Month</h2>
+                </div>
+                <div class="price">
+                    $25
+                </div>
+                <div class="discription">
+                    <p><span class="tick">&#10003</span>No Ads</p>
+                    <p><span class="tick">&#10003</span>Downloads(650)</p>
+                    <p><span class="cross">&#10007</span>Ringtones</p>
+                    <p><span class="tick">&#10003</span>Radio & Podcasts</p>
+                </div>
+                <div class="get">
+                    <p>Get Now</p>
+                </div>
+            </div>
+            <div class="pricing_table">
+                <div class="title">
+                    <h1>Premium</h1>
+                    <h2>For Whole Year</h2>
+                </div>
+                <div class="price">
+                    $250
+                </div>
+                <div class="discription">
+                    <p><span class="tick">&#10003</span>No Ads</p>
+                    <p><span class="tick">&#10003</span>Downloads(Unlimited)</p>
+                    <p><span class="tick">&#10003</span>Ringtones</p>
+                    <p><span class="tick">&#10003</span>Radio & Podcasts</p>
+                </div>
+                <div class="get">
+                    <p>Get Now</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pricing Section ends -->
+    <!-- subscribe section starts -->
+    <div class="radio">
+        <div class="heading">Get In Touch</div>
+        <form action="">
+            <p>Your Name :</p>
+            <input type="text" required="required">
+            <p>Your E-mail :</p>
+            <input type="email" required="required">
+            <p>Any Meassage :</p>
+            <input type="text" required="required">
+            <p>Please Select Your Best Genre : </p>
+            <select required="required">
+                <option>Bollywood old Songs</option>
+                <option>Bollywood New Songs</option>
+                <option>Hollywood Songs</option>
+                <option>Devotional Songs</option>
+                <option>Patriotic Songs</option>
+                <option>Bengali songs</option>
+                <option>Punjabi Songs</option>
+                <option>Marathi Songs</option>
+                <option>Evergreen Hit</option>
+                <option>Telegu Songs</option>
+                <option>Tamil Songs</option>
+            </select>
+            <br>
+            <input type="submit" value="Go">
+        </form>
+    </div>
+    <!-- subscribe section ends -->
+    <!-- footer section starts -->
+    <footer>
+        <div class="footer_table">
+            <div class="about">
+                <div class="heading">About Us</div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Sequi incidunt expedita quos nostrum aliquid 
+                exercitationem nesciunt consequatur odit? Tenetur minima
+                distinctio dolore facilis, id, alias qui quos fugiat 
+                laboriosam, iure unde inventore reprehenderit natus
+                officiis omnis laudantium porro et architecto!
+                </p>
+                <div class="social">
+                    <span class="fa fa-facebook"></span>
+                    <span class="fa fa-twitter"></span>
+                    <span class="fa fa-instagram"></span>
+                    <span class="fa fa-youtube"></span>
+                </div>
+            </div>
+            <div class="quick">
+                <div class="heading">Quick Links</div>
+                <p>About</p>
+                <p>FAQ</p>
+                <p>Privacy Policy</p>
+                <p>Help</p>
+                <p>Terms & Condition</p>
+                <p>Contact</p>
+            </div>
+            <div class="contact">
+                <div class="heading">Contact Info</div>
+                <p>
+                    <span class="fa fa-map-marker"></span>
+                    Sector 246-D, IT Complex, Noida ,India
+                </p>
+                <p>
+                    <span class="fa fa-phone"></span>
+                    +91 123 456 0987
+                </p>
+                <p>
+                    <span class="fa fa-envelope"></span>
+                    tunesmusic@gmail.com
+                </p>
+            </div>
+        </div>
+        <div class="copy">
+            <p> Copyright &copy; D Bros. | All Rights Reserved </p>
+       </div>
+    </footer>
+    <!-- footer section ends -->
+</body>
+</html>
